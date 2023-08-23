@@ -1,6 +1,5 @@
 import os
 import sys
-import cv2
 import requests
 import utils as u
 
@@ -18,13 +17,11 @@ def main():
 
     assert filename in os.listdir(u.INPUT_PATH), f"{filename} not found in input directory"
 
-    image = cv2.imread(os.path.join(u.INPUT_PATH, filename))
-
-    payload = {
-        "imageData" : u.encode_image_to_base64(image=image)
+    files={
+        "file": open(f"input/{filename}", "rb")
     }
 
-    response = requests.request(method="POST", url=f"{base_url}/infer", json=payload)
+    response = requests.request(method="POST", url=f"{base_url}/infer", files=files)
     if response.status_code == 200 and response.json()["statusCode"] == 200:
         print(f"{response.json()['label']} ({response.json()['probability']})")
     else:

@@ -9,7 +9,7 @@ def main():
     args_1: str = "--base-url"
     args_2: str = "--filename"
     
-    base_url: str = "http://localhost:3092"
+    base_url: str = "http://localhost:3044"
     filename: str = "Test_1.jpg"
 
     if args_1 in sys.argv: base_url: str = sys.argv[sys.argv.index(args_1) + 1]
