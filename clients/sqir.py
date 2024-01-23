@@ -31,7 +31,7 @@ def main():
         "file": open(f"input/{filename}", "rb")
     }
 
-    response = requests.request(method="POST", url=f"{base_url}/resize?size={size}&kar={kar}&fill={fill}", files=files)
+    response = requests.request(method="POST", url=f"{base_url}/resize?size={size}&kar={kar}&fill={fill}", files=files, verify=False)
     if response.status_code == 200:
         u.show_image(image=u.decode_image(response.json()["imageData"]))
     else:
