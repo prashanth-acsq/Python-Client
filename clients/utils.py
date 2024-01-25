@@ -27,6 +27,8 @@ def encode_image_to_base64(header: str = "data:image/png;base64", image: np.ndar
     imageData = header + "," + imageData
     return imageData
 
+def decode_binary_data_to_image(data) -> np.ndarray:
+    return np.array(Image.open(io.BytesIO(data)).convert("RGB"))
 
 def decode_image(imageData) -> np.ndarray:
     _, imageData = imageData.split(",")[0], imageData.split(",")[1]
